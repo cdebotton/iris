@@ -21,7 +21,8 @@ module.exports = {
   ],
   plugins: [
     'babel-plugin-styled-components',
-    '@babel/plugin-transform-runtime',
     '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-private-methods',
+    '@babel/plugin-transform-runtime',
   ],
 };

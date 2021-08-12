@@ -35,12 +35,10 @@ export function usePortal(
     trigger = 'click',
   } = portalConfig;
 
-  const {
-    open,
-    close,
-    active,
-    animationProps,
-  } = useMountAnimations(portalConfig, { childRef, screenRef });
+  const { open, close, active, animationProps } = useMountAnimations(
+    portalConfig,
+    { childRef, screenRef }
+  );
 
   const controlled = forceActive === true || forceActive === false;
 

@@ -3,7 +3,7 @@ import { addDecorator } from '@storybook/react';
 import { themes } from './themes';
 import { withGlobalStyles } from './decorators/withGlobalStyles';
 import { withThemes, addThemes } from './addons/themes/code';
-import { disabled } from './argTypes-disabled';
+// import { disabled } from './argTypes-disabled';
 
 const categoryOrder = [
   'iris',
@@ -52,7 +52,7 @@ export const parameters = {
   options: { storySort },
   controls: { expanded: true, hideNoControlsWarning: true },
   docs: { page: null },
-  argTypes: {
-    ...disabled,
-  },
+  // argTypes: {
+  //   ...disabled,
+  // },
 };
