@@ -86,18 +86,19 @@ export function Motion({
     },
     exit: {
       opacity: 0,
-      transform: 'translateX(2%) scale(0.8) rotate(0.5deg)',
+      transform: 'translateX(2%) scale(0.9) rotate(0.5deg)',
       transition: {
         transform: {
           delay,
           type: 'spring',
           bounce: 0.334,
-          duration: 0.667,
+          duration: 0.6,
         },
         opacity: {
           delay,
           type: 'spring',
-          duration: 0.667,
+          bounce: 0,
+          duration: 0.5,
         },
       },
     },

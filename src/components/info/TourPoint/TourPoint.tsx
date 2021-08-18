@@ -217,7 +217,7 @@ const TourPointStyled = styled.div`
   position: relative;
   padding: 1rem;
   background: ${white};
-  color: ${core.color.text(0)('light')};
+  color: ${(core.color.text(0) as any)('light')};
   width: 320px;
   border-radius: 0.5rem;
   border: 0.25rem solid ${amethyst(600)};
