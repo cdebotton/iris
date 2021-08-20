@@ -30,12 +30,20 @@ export const TourContext = React.createContext<any>({
 
 export function Tour({ children, id = null, steps = 2 }) {
   const [active, activeSet] = useState(1);
-
   if (!id) id = generateUID();
+
+  function activeTourPointSet(index) {
+    console.log(index, typeof index);
+    if (typeof index === 'number' && (index < steps || index > 0)) {
+      activeSet(index);
+    } else {
+      activeSet(null);
+    }
+  }
 
   const value = {
     active,
-    activeSet,
+    activeSet: activeTourPointSet,
     id,
     steps,
     automated: true,
@@ -74,7 +82,7 @@ export function TourPoint({
   content,
   onOpen,
   onClose,
-  portal = true,
+  // portal = true,
   src,
   step,
   style,
@@ -106,7 +114,7 @@ export function TourPoint({
     </Header>
   );
 
-  function stepFn(intent, increment, compare) {
+  function stepFn(intent, increment = 0, compare = null) {
     const nextPoint = compare
       ? compare(tourIndex + increment, steps)
       : null;
@@ -114,7 +122,7 @@ export function TourPoint({
     return (event) => {
       if (automated) {
         const e = { ...event, intent };
-        console.log(intent, { e });
+        console.log(intent, nextPoint, { e });
 
         onClose?.(e);
         tourIndexSet(nextPoint);
@@ -122,8 +130,8 @@ export function TourPoint({
     };
   }
 
-  const lessThan = (a, b) => a < b;
-  const greaterThan = (a, b) => a > b;
+  const lessThan = (a, b) => a < b && a;
+  const greaterThan = (a, b) => a > b || a;
 
   const stepBack = stepFn('back', -1, lessThan);
   const stepNext = stepFn('next', 1, greaterThan);
@@ -132,23 +140,17 @@ export function TourPoint({
   if (!document.getElementById('iris-portals')) {
     const portal = document.createElement('div');
     portal.id = 'iris-portals';
-
     document.body.appendChild(portal);
   }
 
-  const confirmationElement =
-    typeof confirmation === 'string' ||
-    typeof confirmation === 'number' ? (
-      <Button
-        color={amethyst(600)}
-        onClick={stepNext}
-        style={{ animationDelay: delay(5) }}
-      >
-        {confirmation}
-      </Button>
-    ) : (
-      confirmation
-    );
+  const confirmationElement = SlotProgressive(
+    confirmation,
+    <Button
+      color={amethyst(600)}
+      onClick={stepNext}
+      style={{ animationDelay: delay(5) }}
+    />
+  );
 
   const side = attach.split('-')[0] || attach;
   const margin =
@@ -176,7 +178,7 @@ export function TourPoint({
                 </Paragraph>
 
                 <Footer>
-                  <Steps>
+                  <Steps onClick={stepBack}>
                     Step {step} of {steps}
                   </Steps>
                   <Button
@@ -209,6 +211,15 @@ export function TourPoint({
       {childrenPortal}
     </>
   );
+}
+
+function SlotProgressive(children, Wrapper) {
+  const ProgressiveElement =
+    typeof children === 'string' || typeof children === 'number'
+      ? cloneElement(Wrapper, { children })
+      : children;
+
+  return ProgressiveElement;
 }
 
 const Footer = styled.div`

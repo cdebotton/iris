@@ -167,7 +167,7 @@ export function Attach() {
         >
           {attachs.map((attach, i) => (
             <TourPoint
-              attach={attach}
+              attach={active === i + 1}
               content="All the leaves are brown and the sky is grey, I've been for a walk on a winters day."
               key={i}
               src="http://placekitten.com/320/213"
