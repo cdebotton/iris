@@ -1,46 +1,42 @@
-// buttons
-export { Button } from './buttons/Button/Button';
-export { ButtonToggleState } from './buttons/ToggleState/ToggleState';
-export { FloatingButton } from './buttons/Floating/Floating';
-export { SocialButton } from './buttons/Social/SocialButton';
-
-// cards
-export { Card } from './cards/Card/Card';
-export { CategoryCard } from './cards/CategoryCard/CategoryCard';
-export { NewItemCard } from './cards/NewItemCard/NewItemCard';
-
-// chips
-export { Avatar } from './chips/Avatar/Avatar';
-export { Badge } from './chips/Badge/Badge';
-export { CounterIcon } from './chips/CounterIcon/CounterIcon';
-export { Tag } from './chips/Tag/Tag';
-
-// info
-export { Annotation } from './info/Annotation/Annotation';
-export { FeatureTourPanel } from './info/FeatureTour/FeatureTourPanel';
-export { Notice } from './info/Notice/Notice';
-export { Notification } from './info/Notification/Notification';
-export { Path } from './info/Path/Path';
-export { Tip } from './info/Tip/Tip';
-
-// inputs
-export { Checkbox } from './inputs/Checkbox/Checkbox';
-export { ColorSelect } from './inputs/ColorSelect/ColorSelect';
-export { CopyField } from './inputs/CopyField/CopyField';
-export { DateRange } from './inputs/Dates/DateRange/DateRange';
-export { DateSelect } from './inputs/Dates/DateSelect/DateSelect';
-export { FileUpload } from './inputs/FileUpload/FileUpload';
-export { Input } from './inputs/Input/Input';
-export { Password } from './inputs/Password/Password';
-export { Radio } from './inputs/Radio/Radio';
-export { RadioSet } from './inputs/Radio/RadioSet';
-export { Search } from './inputs/Search/Search';
-export { Select } from './inputs/Select/Select';
-export { Slider } from './inputs/Slider/Slider';
-export { TextArea } from './inputs/TextArea/TextArea';
-export { Toggle } from './inputs/Toggle/Toggle';
-export { withCharacterCount } from './inputs/withCharacterCount/withCharacterCount';
-
-// REMOVE IN IRIS 9
-export { Modal } from '../layout';
-export { Pop, PopOver } from '../layout';
+export { Annotation } from './Annotation/Annotation';
+export { Avatar } from './Avatar/Avatar';
+export { Badge } from './Badge/Badge';
+export { Button } from './Button/Button';
+export { ButtonToggleState } from './ButtonToggleState/ToggleState';
+export { Card } from './Card/Card';
+export { CategoryCard } from './CardCategory/CategoryCard';
+export { Checkbox } from './Checkbox/Checkbox';
+export { ColorSelect } from './SelectColor/ColorSelect';
+export { CopyField } from './CopyField/CopyField';
+export { CounterIcon } from './CounterIcon/CounterIcon';
+export { DateRange } from './DateRange/DateRange';
+export { DateSelect } from './DateSelect/DateSelect';
+export { FeatureTourPanel } from '../_deprecated/FeatureTour/FeatureTourPanel';
+export { FileUpload } from './FileUpload/FileUpload';
+export { FloatingButton } from './ButtonFloating/Floating';
+export { Input } from './Input/Input';
+export { Menu } from './Menu/Menu';
+export { Modal } from './Modal/Modal';
+export { NewItemCard } from './CardNewItem/NewItemCard';
+export { Notice } from './Notice/Notice';
+export { Notification } from './Notification/Notification';
+export { Pagination } from './Pagination/Pagination';
+export { Panel } from './Panel/Panel';
+export { Password } from './Password/Password';
+export { Path } from './Path/Path';
+export { Pop } from './PopOver/PopOver.minors';
+export { PopOver } from './PopOver/PopOver';
+export { Radio } from './Radio/Radio';
+export { RadioSet } from './Radio/RadioSet';
+export { Ribbon } from './Ribbon/Ribbon';
+export { Search } from './Search/Search';
+export { Select } from './Select/Select';
+export { Sidebar } from './Sidebar/Sidebar';
+export { Slider } from './Slider/Slider';
+export { SocialButton } from './ButtonSocial/SocialButton';
+export { Tabs } from './Tabs/Tabs';
+export { Tag } from './Tag/Tag';
+export { TextArea } from './TextArea/TextArea';
+export { Tip } from './Tip/Tip';
+export { Toggle } from './Toggle/Toggle';
+export { withCharacterCount } from './withCharacterCount/withCharacterCount';

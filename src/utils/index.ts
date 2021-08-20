@@ -1,8 +1,16 @@
+export { arrowRight, arrowLeft, enter, esc, spacebar, tab } from './events/KeyCodes';
 export { centered, hidden, Focus, GlobalStyles } from './css';
+export { createPortalOutlet } from './DOM/createPortalOutlet';
+export { CSSProps, ExtractProps, Override, IrisElement } from './HOCs/types';
 export { generateUID } from './general/generateUID';
+export { geometry } from './DOM/geometry';
+export { getComputedStyles } from './DOM/getComputedStyles';
+export { IrisProps, IrisInputProps, Messages, MinorComponent } from './HOCs/IrisProps';
+export { removeElementByID } from './DOM/removeElementByID';
+export { SSR } from './DOM/SSR';
+export { stopPrevent } from './events/stopPrevent';
 export { throttle } from './general/throttle';
-
-// hooks
+export { useClose, onClose } from './events/onClose';
 export { useDeprecate } from './hooks/useDeprecate';
 export { useFlip } from './hooks/useFlip';
 export { useForwardRef } from './hooks/useForwardRef';
@@ -13,20 +21,4 @@ export { useMeasure } from './hooks/useMeasure';
 export { useOutsideClick } from './hooks/useOutsideClick';
 export { usePortal, validate, ANCHOR_POINTS, Attach, AttachAlias, SimpleAnimation } from './hooks/usePortal';
 export { useStateTransmorphic } from './hooks/useStateTransmorphic';
-
-// events
-export { useClose, onClose } from './events/onClose';
-export { arrowRight, arrowLeft, enter, esc, spacebar, tab } from './events/KeyCodes';
-export { stopPrevent } from './events/stopPrevent';
-
-// HOCs
 export { withIris } from './HOCs/withIris';
-export { IrisProps, IrisInputProps, Messages, MinorComponent } from './HOCs/IrisProps';
-export { CSSProps, ExtractProps, Override, IrisElement } from './HOCs/types';
-
-// DOM
-export { createPortalOutlet } from './DOM/createPortalOutlet';
-export { geometry } from './DOM/geometry';
-export { getComputedStyles } from './DOM/getComputedStyles';
-export { removeElementByID } from './DOM/removeElementByID';
-export { SSR } from './DOM/SSR';
