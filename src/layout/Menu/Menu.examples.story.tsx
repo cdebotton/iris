@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 
 import { Menu } from './Menu';
 
@@ -15,8 +15,41 @@ import {
   DotsMenu,
   Gear,
 } from '../../icons';
+import { Item } from './Menu.minors';
+import styled from 'styled-components';
 
 export default { title: 'layout/Menu/Examples', component: Menu };
+
+export function Recursive() {
+  return (
+    <Row>
+      Item 1
+      <Row>
+        Item 1 SubItem 1<Row>Item 1 SubItem 1 SubSubItem 1</Row>
+      </Row>
+    </Row>
+  );
+}
+
+function Item({ children, style, ...props }) {
+  const paddingLeft = style?.paddingLeft + 16 || 0;
+
+  children = children.map((child) =>
+    typeof child === 'string'
+      ? child
+      : cloneElement(child, { style: { paddingLeft } })
+  );
+
+  return (
+    <RowStyled style={{ paddingLeft, ...style }} {...props}>
+      {children}
+    </RowStyled>
+  );
+}
+
+const RowStyled = styled.div`
+  background: rgba(0, 0, 0, 0.15);
+`;
 
 export function Simple() {
   return (

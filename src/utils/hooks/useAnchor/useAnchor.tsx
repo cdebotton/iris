@@ -19,6 +19,52 @@ export function useAnchor(ref, attach) {
     }
   }, [ref, rect]);
 
+  useIsomorphicLayoutEffect(() => {
+    function scrollObserve(event) {
+      console.log('scroll');
+      if (ref.current) {
+        const rectRef: DOMRect = ref.current.getBoundingClientRect();
+        const rectNew = rectRef;
+
+        if (rect.top !== rectNew.top) rectSet(rectNew);
+      }
+    }
+
+    window.addEventListener('scroll', scrollObserve);
+    return () => window.removeEventListener('scroll', scrollObserve);
+  }, []);
+
+  // useIsomorphicLayoutEffect(() => {
+  //   const config = {
+  //     attributes: true,
+  //     childList: true,
+  //     subtree: true,
+  //   };
+
+  //   const callback = (mutationsList, observer) => {
+  //     // Use traditional 'for loops' for IE 11
+  //     for (const mutation of mutationsList) {
+  //       if (mutation.type === 'childList') {
+  //         console.log('A child node has been added or removed.');
+  //       } else if (mutation.type === 'attributes') {
+  //         console.log(
+  //           'The ' +
+  //             mutation.attributeName +
+  //             ' attribute was modified.'
+  //         );
+  //       }
+  //     }
+  //   };
+
+  //   const observer = new MutationObserver(callback);
+
+  //   if (ref.current) {
+  //     observer.observe(ref.current, config);
+  //   }
+
+  //   return () => observer.disconnect();
+  // });
+
   const styleAnchor: any = {};
   styleAnchor.width = rect.width;
   styleAnchor.height = rect.height;

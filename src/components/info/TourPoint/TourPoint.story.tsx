@@ -112,6 +112,7 @@ export function Sequence() {
         <Button onClick={() => activeSet(1)}>Restart</Button>
         <TourPoint
           attach="left-top"
+          active={active === 1}
           title="A Fresh New Look"
           src="http://placekitten.com/320/213"
           step={1}
@@ -121,6 +122,7 @@ export function Sequence() {
         </TourPoint>
         <TourPoint
           attach="left-top"
+          active={active === 2}
           title="A Fresh New Look"
           src="http://placekitten.com/320/213"
           step={2}
@@ -130,6 +132,7 @@ export function Sequence() {
         </TourPoint>
         <TourPoint
           attach="left-top"
+          active={active === 3}
           title="A Fresh New Look"
           src="http://placekitten.com/320/213"
           step={3}
@@ -142,7 +145,7 @@ export function Sequence() {
   }
 
   return (
-    <Tour steps={3}>
+    <Tour id="demo-tour" steps={3}>
       <Children />
     </Tour>
   );
@@ -203,3 +206,5 @@ const Card: any = forwardRef(({ children }, ref: any) => {
     </div>
   );
 });
+
+Functi;

@@ -18,6 +18,7 @@ import { Header, Paragraph, Text } from '../../../typography';
 import { themes } from '../../../themes';
 import { Button } from '../../../components';
 import { useAnchor } from '../../../utils/hooks/useAnchor/useAnchor';
+import { generateUID } from '../../../utils';
 
 const delay = (i) => 320 + i * 80 + 'ms';
 
@@ -27,12 +28,15 @@ export const TourContext = React.createContext<any>({
   automated: false,
 });
 
-export function Tour({ children, steps = 2 }) {
+export function Tour({ children, id = null, steps = 2 }) {
   const [active, activeSet] = useState(1);
+
+  if (!id) id = generateUID();
 
   const value = {
     active,
     activeSet,
+    id,
     steps,
     automated: true,
   };
@@ -62,7 +66,7 @@ interface Props {
 }
 
 export function TourPoint({
-  active: activeExtrinsic = true,
+  active = true,
   alt = null,
   attach = 'left',
   children,
@@ -77,8 +81,12 @@ export function TourPoint({
   title,
   ...props
 }: Props) {
-  const { active, activeSet, automated, steps } =
-    useContext(TourContext);
+  const {
+    active: tourIndex,
+    activeSet: tourIndexSet,
+    automated,
+    steps,
+  } = useContext(TourContext);
 
   const ref = useRef(null);
   const childrenClone = cloneElement(children, { ref });
@@ -98,20 +106,28 @@ export function TourPoint({
     </Header>
   );
 
-  function stepNext() {
-    if (automated) {
-      const next = active + 1;
+  function stepFn(intent, increment, compare) {
+    const nextPoint = compare
+      ? compare(tourIndex + increment, steps)
+      : null;
 
-      if (next > steps) activeSet(1);
-      else activeSet(next);
-    }
+    return (event) => {
+      if (automated) {
+        const e = { ...event, intent };
+        console.log(intent, { e });
+
+        onClose?.(e);
+        tourIndexSet(nextPoint);
+      }
+    };
   }
 
-  function dismiss() {
-    if (automated) {
-      activeSet(null);
-    }
-  }
+  const lessThan = (a, b) => a < b;
+  const greaterThan = (a, b) => a > b;
+
+  const stepBack = stepFn('back', -1, lessThan);
+  const stepNext = stepFn('next', 1, greaterThan);
+  const dismiss = stepFn('dismiss');
 
   if (!document.getElementById('iris-portals')) {
     const portal = document.createElement('div');
@@ -138,12 +154,9 @@ export function TourPoint({
   const margin =
     'margin' + side.charAt(0).toUpperCase() + side.slice(1);
 
-  let visible = active && active === step;
-  if (!automated) visible = activeExtrinsic;
-
   const childrenTourPoint = (
     <AnimatePresence>
-      {visible && (
+      {active && (
         <div style={{ position: 'absolute', ...styleAnchor }}>
           <div style={{ position: 'absolute', ...styleChild }}>
             <Motion attach={attach}>
@@ -162,15 +175,7 @@ export function TourPoint({
                   {content}
                 </Paragraph>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    marginTop: '1rem',
-                  }}
-                >
+                <Footer>
                   <Steps>
                     Step {step} of {steps}
                   </Steps>
@@ -183,7 +188,7 @@ export function TourPoint({
                     Dismiss
                   </Button>
                   {confirmationElement}
-                </div>
+                </Footer>
                 <Caret attach={attach} />
               </TourPointStyled>
             </Motion>
@@ -205,6 +210,14 @@ export function TourPoint({
     </>
   );
 }
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
 
 const Steps = styled(Text)`
   color: ${slate(500)};

@@ -36,8 +36,14 @@ function CommonStory() {
   return (
     <Frame>
       <CardBg ref={ref} />
-      {attachs.map((attach) => (
-        <Card attachRef={ref} attach={attach} children={attach} />
+      {attachs.map((attach, key) => (
+        <Card
+          key={key}
+          attachRef={ref}
+          attach={attach}
+          children={attach}
+          style={{ zIndex: 5000 - key }}
+        />
       ))}
     </Frame>
   );
@@ -54,10 +60,14 @@ function Card({ attach, attachRef, ...props }) {
   const outlet = createPortalOutlet('iris-portals');
 
   return createPortal(
-    <Anchor style={styleAnchor}>
+    <Anchor style={{ ...styleAnchor, zIndex: props.style.zIndex }}>
       <CardStyled
         {...props}
-        style={{ position: 'absolute', ...styleChild }}
+        style={{
+          position: 'absolute',
+          ...styleChild,
+          zIndex: props.style.zIndex,
+        }}
       />
     </Anchor>,
     outlet
@@ -78,6 +88,15 @@ const CardStyled = styled.div`
   text-align: center;
   font-size: 1rem;
   font-weight: 700;
+  transition: 120ms ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    width: 22rem;
+    height: 22rem;
+    background: rgba(200, 0, 0, 0.15);
+    border: 5px solid rgba(200, 0, 0, 1);
+    color: rgba(200, 0, 0, 1);
 `;
 
 const Frame = styled.div`
