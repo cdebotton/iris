@@ -40,3 +40,4 @@ export { TextArea } from './TextArea/TextArea';
 export { Tip } from './Tip/Tip';
 export { Toggle } from './Toggle/Toggle';
 export { withCharacterCount } from './withCharacterCount/withCharacterCount';
+export { LoaderCircular } from './LoaderCircular/LoaderCircular';

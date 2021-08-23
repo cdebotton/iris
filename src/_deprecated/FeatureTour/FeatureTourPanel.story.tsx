@@ -1,22 +1,20 @@
 import React from 'react';
 import { color } from '@storybook/addon-knobs';
-import { PositionProperty } from 'csstype';
 
 import { FeatureTourPanel } from './FeatureTourPanel';
 
-import { Button } from '../../index';
-import { Link } from '../../../typography';
-import { Header, Paragraph } from '../../../typography';
-import { red, yellow, green } from '../../../color';
+import { Button } from '../../components';
+import { Link, Header, Paragraph } from '../../typography';
+import { red, yellow, green } from '../../color';
 
 /**
  * This component will be deprecated so not adding controls
  * Prop documentation will still be generated.
  */
-export default {
-  title: 'Components/Info/FeatureTourPanel',
-  component: FeatureTourPanel,
-};
+// export default {
+//   title: 'components/FeatureTourPanel',
+//   component: FeatureTourPanel,
+// };
 
 const buttonProps = {
   format: 'basic',
@@ -224,7 +222,6 @@ export function Colors() {
         <Link
           href="https://en.wikipedia.org/wiki/2004"
           target="_blank"
-          format="primaryDark"
         >
           2004
         </Link>
@@ -401,8 +398,9 @@ export function Fancy() {
   );
 }
 
-const dotStyles = (pos) => ({
-  position: 'absolute' as PositionProperty,
-  top: `${pos}rem`,
-  left: `${pos}rem`,
-});
+const dotStyles = (pos) =>
+  ({
+    position: 'absolute',
+    top: `${pos}rem`,
+    left: `${pos}rem`,
+  } as const);
