@@ -11,7 +11,6 @@ export { CopyField } from './CopyField/CopyField';
 export { CounterIcon } from './CounterIcon/CounterIcon';
 export { DateRange } from './DateRange/DateRange';
 export { DateSelect } from './DateSelect/DateSelect';
-export { FeatureTourPanel } from '../_deprecated/FeatureTour/FeatureTourPanel';
 export { FileUpload } from './FileUpload/FileUpload';
 export { FloatingButton } from './ButtonFloating/Floating';
 export { Input } from './Input/Input';
